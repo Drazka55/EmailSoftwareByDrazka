@@ -1,5 +1,6 @@
 #La prima parte, "1.0", significa che l'input deve essere letto dalla riga uno, carattere zero (cioè: il primo carattere). END è una costante importata impostata sulla stringa "end". La parte END significa leggere fino a raggiungere la fine della casella di testo. L'unico problema con questo è che in realtà aggiunge una nuova riga al nostro input. Quindi, per risolverlo dovremmo cambiare END in end-1c (Grazie Bryan Oakley) Il -1c cancella 1 carattere, mentre -2c significherebbe cancellare due caratteri, e così via.
 import tkinter as tk
+import smtplib
 
 #Variables
 FromPositionR = 0
@@ -7,6 +8,7 @@ PasswordPositionR = 1
 ToPositionR = 2
 ObjectPositionR = 3
 MessagePositionR = 4
+SendButtonPositionR = 5
 
 #Window
 window = tk.Tk()
@@ -56,13 +58,32 @@ MessageInput = tk.Text(window, width=40, height=20, bg="orange", fg = "black", b
 MessageInput.grid(row=MessagePositionR, column=1)
 
 #Functions
-def clickTest():
-    inputValue=ToEmailInput.get("1.0","end-1c")
-    print(inputValue)
+def sendEmail():
+    FromEmail = FromEmailInput.get("1.0","end-1c")
+    Password = PasswordEmailInput.get("1.0","end-1c")
+    ToEmail = ToEmailInput.get("1.0","end-1c")
+    Object = ObjectInput.get("1.0","end-1c")
+    Content = MessageInput.get("1.0","end-1c")
+    Message = Object + Content
+
+
+    emailService = smtplib.SMTP("smtp.gmail.com", 587)
+
+    emailService.ehlo()
+
+    emailService.starttls()
+
+    emailService.login(FromEmail, Password)
+
+    emailService.sendmail(FromEmail, ToEmail, Message)
+    print("Sto inviando l'email")
+
+    emailService.quit()
+    print("Email inviata")
 
 #Buttons
-TestButton = tk.Button(window, text="Test", padx=50, pady=50, command=clickTest)
-TestButton.grid(row=9, column=0)
+SendButton = tk.Button(window, text="send", padx=50, pady=10, command=sendEmail)
+SendButton.grid(row=SendButtonPositionR, column=0)
 
 if __name__ == "__main__":
     window.mainloop()
