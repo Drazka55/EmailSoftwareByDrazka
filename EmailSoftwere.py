@@ -1,4 +1,3 @@
-#La prima parte, "1.0", significa che l'input deve essere letto dalla riga uno, carattere zero (cioè: il primo carattere). END è una costante importata impostata sulla stringa "end". La parte END significa leggere fino a raggiungere la fine della casella di testo. L'unico problema con questo è che in realtà aggiunge una nuova riga al nostro input. Quindi, per risolverlo dovremmo cambiare END in end-1c (Grazie Bryan Oakley) Il -1c cancella 1 carattere, mentre -2c significherebbe cancellare due caratteri, e così via.
 import tkinter as tk
 import smtplib
 
