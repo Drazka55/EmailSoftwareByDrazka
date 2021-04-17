@@ -9,10 +9,13 @@ ToPositionR = 2
 ObjectPositionR = 3
 MessagePositionR = 4
 SendButtonPositionR = 5
+AddressBookPositionR = 6
+
+ReadFile = open("AddressBook.txt", "r").read()
 
 #Window
 window = tk.Tk()
-window.geometry("600x600")
+window.geometry("600x1000")
 window.title("Email Sender")
 window.resizable(False, False)
 window.configure(background="yellow")
@@ -57,6 +60,15 @@ MessageLabel.configure(background="yellow")
 MessageInput = tk.Text(window, width=40, height=20, bg="orange", fg = "black", borderwidth=5)
 MessageInput.grid(row=MessagePositionR, column=1)
 
+#AddressBook
+AddressBookLabel = tk.Label(window, text="Address Book:")
+AddressBookLabel.grid(row=AddressBookPositionR , column=0)
+AddressBookLabel.configure(background="yellow")
+
+AddressBookInput = tk.Text(window, width=40, height=30, bg="orange", fg = "black", borderwidth=5)
+AddressBookInput.grid(row=AddressBookPositionR, column=1)
+AddressBookInput.insert(tk.END, ReadFile)
+
 #Functions
 def sendEmail():
     FromEmail = FromEmailInput.get("1.0","end-1c")
@@ -81,9 +93,21 @@ def sendEmail():
     emailService.quit()
     print("Email inviata")
 
+def QuitProgram():
+    AddressBookSave = AddressBookInput.get("1.0","end-1c")
+
+    SaveFile = open("AddressBook.txt", "w")
+    SaveFile.write(AddressBookSave)
+    SaveFile.close()
+
+    window.destroy()
+
 #Buttons
-SendButton = tk.Button(window, text="send", padx=50, pady=10, command=sendEmail)
+SendButton = tk.Button(window, text="Send", padx=50, pady=10, command=sendEmail)
 SendButton.grid(row=SendButtonPositionR, column=0)
+
+QuitButton = tk.Button(window, text="Quit", padx=50, pady=10, command=QuitProgram)
+QuitButton.grid(row=SendButtonPositionR, column=2)
 
 if __name__ == "__main__":
     window.mainloop()
