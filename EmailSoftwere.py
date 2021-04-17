@@ -73,7 +73,7 @@ def sendEmail():
     FromEmail = FromEmailInput.get("1.0","end-1c")
     Password = PasswordEmailInput.get("1.0","end-1c")
     ToEmail = ToEmailInput.get("1.0","end-1c")
-    Object = ObjectInput.get("1.0","end-1c")
+    Object = ObjectInput.get("1.0","end-1c") + "\n"
     Content = MessageInput.get("1.0","end-1c")
     Message = Object + Content
 
