@@ -5,7 +5,7 @@ import smtplib
 FromPositionR = 0
 PasswordPositionR = 1
 ToPositionR = 2
-ObjectPositionR = 3
+SubjectPositionR = 3
 MessagePositionR = 4
 SendButtonPositionR = 5
 AddressBookPositionR = 6
@@ -43,13 +43,13 @@ ToLabel.configure(background="yellow")
 ToEmailInput = tk.Text(window, width=40, height=1, bg="orange", fg = "black", borderwidth=5)
 ToEmailInput.grid(row=ToPositionR, column=1)
 
-#Object
-ObjectLabel = tk.Label(window, text="Object:")
-ObjectLabel.grid(row=ObjectPositionR, column=0)
-ObjectLabel.configure(background="yellow")
+#Subject
+SubjectLabel = tk.Label(window, text="Subject:")
+SubjectLabel.grid(row=SubjectPositionR, column=0)
+SubjectLabel.configure(background="yellow")
 
-ObjectInput = tk.Text(window, width=40, height=2, bg="orange", fg = "black", borderwidth=5)
-ObjectInput.grid(row=ObjectPositionR, column=1)
+SubjectInput = tk.Text(window, width=40, height=2, bg="orange", fg = "black", borderwidth=5)
+SubjectInput.grid(row=SubjectPositionR, column=1)
 
 #Message
 MessageLabel = tk.Label(window, text="Message:")
@@ -73,9 +73,9 @@ def sendEmail():
     FromEmail = FromEmailInput.get("1.0","end-1c")
     Password = PasswordEmailInput.get("1.0","end-1c")
     ToEmail = ToEmailInput.get("1.0","end-1c")
-    Object = ObjectInput.get("1.0","end-1c") + "\n"
+    Subject = SubjectInput.get("1.0","end-1c") + "\n"
     Content = MessageInput.get("1.0","end-1c")
-    Message = Object + Content
+    Message = Subject + Content
 
 
     emailService = smtplib.SMTP("smtp.gmail.com", 587)
