@@ -87,10 +87,8 @@ def sendEmail():
     emailService.login(FromEmail, Password)
 
     emailService.sendmail(FromEmail, ToEmail, Message)
-    print("Sto inviando l'email")
 
     emailService.quit()
-    print("Email inviata")
 
 def QuitProgram():
     AddressBookSave = AddressBookInput.get("1.0","end-1c")
