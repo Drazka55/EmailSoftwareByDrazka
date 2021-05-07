@@ -9,3 +9,6 @@ It is a simple software for send email.
 3)Open the executable file called EmailSoftwere.exe
 
 Now you are ready to use EmailSoftwere!!!
+
+# ATTENTION
+The software work only with gmail email
